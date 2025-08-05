@@ -1,0 +1,13 @@
+{
+  "name": "insightflow-service",
+  "version": "1.0.0",
+  "description": "InsightFlow Node.js/Express web-service",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^2.0.0"
+  }
+}
