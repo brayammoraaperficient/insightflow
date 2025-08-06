@@ -1,0 +1,26 @@
+[
+  {
+    "question": "What is InsightFlow?",
+    "answer": "InsightFlow is a SaaS analytics platform that helps organizations visualize, analyze, and share data insights easily."
+  },
+  {
+    "question": "How do I upload data to InsightFlow?",
+    "answer": "You can upload data using the 'Upload' feature in the dashboard or via the /data API endpoint. Supported formats include CSV and Excel."
+  },
+  {
+    "question": "Can I create visualizations in InsightFlow?",
+    "answer": "Yes, InsightFlow provides built-in tools for creating charts, graphs, and dashboards from your uploaded data."
+  },
+  {
+    "question": "How does user permissions work?",
+    "answer": "InsightFlow supports role-based access control. Admins can assign permissions to users for viewing, editing, or sharing data and visualizations."
+  },
+  {
+    "question": "Does InsightFlow offer recommendations?",
+    "answer": "Yes, InsightFlow can suggest relevant visualizations and analytics based on your data and usage patterns."
+  },
+  {
+    "question": "Is my data secure in InsightFlow?",
+    "answer": "InsightFlow uses industry-standard encryption and access controls to keep your data secure."
+  }
+]

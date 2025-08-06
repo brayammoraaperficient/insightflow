@@ -3,6 +3,7 @@ const router = express.Router();
 const { authMiddleware } = require('../controllers/auth');
 require('dotenv').config();
 const { AzureOpenAI } = require('openai');
+const { retrieveKBContext } = require('../controllers/kb');
 
 const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
 const apiKey = process.env.AZURE_OPENAI_API_KEY;
@@ -18,11 +19,18 @@ router.post('/', authMiddleware, async (req, res) => {
   }
 
   try {
+    // Retrieve relevant KB context
+    const kbContext = retrieveKBContext(message);
+    // Compose prompt with KB context
+    let systemPrompt = "You are a polite, customer-focused assistant for InsightFlow, a SaaS analytics tool. Always respond helpfully and kindly.";
+    if (kbContext) {
+      systemPrompt += `\nHere is some product context you MUST use in your reply:\n${kbContext}`;
+    }
     const options = { endpoint, apiKey, deployment, apiVersion };
     const client = new AzureOpenAI(options);
     const response = await client.chat.completions.create({
       messages: [
-        { role: "system", content: "You are a polite, customer-focused assistant. Always respond helpfully and kindly." },
+        { role: "system", content: systemPrompt },
         { role: "user", content: message }
       ],
       max_tokens: 4096,
@@ -35,7 +43,7 @@ router.post('/', authMiddleware, async (req, res) => {
       throw response.error;
     }
     const reply = response.choices?.[0]?.message?.content || "Sorry, I couldn't generate a reply.";
-    res.json({ reply });
+    res.json({ reply, kbContext });
   } catch (err) {
     console.error('Azure OpenAI error:', err);
     if (err.statusCode === 429 || err.code === 429) {
