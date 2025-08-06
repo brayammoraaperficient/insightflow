@@ -9,7 +9,7 @@ This is the initial scaffold for the InsightFlow Node.js/Express web-service.
 - Automated recommendations
 - API documentation
 
-- Contextual chatbot with Retrieval-Augmented Generation (RAG)
+- Contextual chatbot with Retrieval-Augmented Generation (RAG) 
 
 ## Endpoints
 - `POST /data/upload` — Upload data files
