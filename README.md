@@ -50,13 +50,20 @@ This project was developed following an 8-part workflow:
 ---
 
 ## Features
+## Features
 - Data upload (CSV, Excel, etc.)
 - Interactive visualizations
 - User permissions management
 - Automated recommendations
 - API documentation
 - Contextual chatbot with Retrieval-Augmented Generation (RAG)
+- **Observability:**
+  - HTTP request logging (morgan)
+  - Application logs (console)
+  - Prometheus metrics endpoint (`/metrics`)
+  - Health check endpoint (`/health`)
 
+## Endpoints
 ## Endpoints
 - `POST /data/upload` — Upload data files
 - `GET /visualizations/{dataset_id}` — View interactive charts
@@ -64,10 +71,22 @@ This project was developed following an 8-part workflow:
 - `GET /recommendations/{user_id}` — Get recommendations
 - `GET /api/docs` — API documentation
 - `POST /chat` — Chatbot endpoint with KB-augmented responses
+- `GET /metrics` — Prometheus metrics for monitoring
+- `GET /health` — Health check for service status
 
 ## Getting Started
 1. Install dependencies: `npm install`
 2. Start the server: `npm start`
+## Getting Started
+1. Install dependencies: `npm install`
+2. Start the server: `npm start`
+3. Open [http://localhost:3000/](http://localhost:3000/) in your browser to use the chat UI.
+   - Click "Login with GitHub" to authenticate.
+   - Type your message in the input box and press Enter or click "Send".
+   - Click "Logout" to end your session.
+4. Check observability endpoints:
+   - Health: [http://localhost:3000/health](http://localhost:3000/health)
+   - Metrics: [http://localhost:3000/metrics](http://localhost:3000/metrics)
 
 ## Environment Variables
 Set these in `.env` or via Kubernetes secrets:
