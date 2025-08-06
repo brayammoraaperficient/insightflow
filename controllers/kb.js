@@ -10,10 +10,11 @@ function retrieveKBContext(userMessage) {
   } catch (err) {
     return '';
   }
-  // Find KB entries where the question matches keywords in the user message
-  const keywords = userMessage.toLowerCase().split(/\W+/);
+  // Find KB entries where the question matches non-empty keywords in the user message
+  const keywords = userMessage.toLowerCase().split(/\W+/).filter(Boolean);
   const matches = kb.filter(entry => {
-    return keywords.some(kw => entry.question.toLowerCase().includes(kw));
+    // Only match if ALL keywords are present in the question
+    return keywords.length > 0 && keywords.every(kw => entry.question.toLowerCase().includes(kw));
   });
   if (matches.length === 0) return '';
   // Concatenate answers for context

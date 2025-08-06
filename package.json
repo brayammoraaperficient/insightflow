@@ -4,7 +4,8 @@
   "description": "InsightFlow Node.js/Express web-service",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "jest"
   },
   "dependencies": {
     "@azure/core-auth": "^1.10.0",
@@ -16,5 +17,9 @@
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.0",
     "openai": "^5.12.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "supertest": "^6.3.3"
   }
 }
