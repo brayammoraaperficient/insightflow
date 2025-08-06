@@ -5,7 +5,7 @@ This is the initial scaffold for the InsightFlow Node.js/Express web-service.
 ## Features
 - Data upload (CSV, Excel, etc.)
 - Interactive visualizations
-- User permissions management
+- User permissions management 
 - Automated recommendations
 - API documentation
 
