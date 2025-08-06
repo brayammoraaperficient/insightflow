@@ -5,7 +5,7 @@ const upload = multer({ dest: 'uploads/' });
 
 // POST /data/upload
 router.post('/upload', upload.single('file'), (req, res) => {
-  // TODO: Handle file upload logic
+  console.log(`[data/upload] file:`, req.file);
   res.json({ message: 'File uploaded successfully', file: req.file });
 });
 

@@ -17,7 +17,10 @@ passport.use(new GitHubStrategy({
 }));
 
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
+  if (req.isAuthenticated()) {
+    console.log(`[ensureAuthenticated] user:`, req.user);
+    return next();
+  }
   res.status(401).json({ error: 'Not authenticated' });
 }
 

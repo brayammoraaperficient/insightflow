@@ -7,6 +7,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'supersecretkey';
 
 exports.register = async (req, res) => {
   const { username, password } = req.body;
+  console.log(`[register] username: ${username}`);
   if (!username || !password) {
     return res.status(400).json({ error: 'Username and password required.' });
   }
@@ -21,6 +22,7 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   const { username, password } = req.body;
+  console.log(`[login] username: ${username}`);
   const user = users.find(u => u.username === username);
   if (!user) {
     return res.status(401).json({ error: 'Invalid credentials.' });
@@ -35,6 +37,7 @@ exports.login = async (req, res) => {
 
 exports.authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
+  console.log(`[authMiddleware] headers:`, req.headers);
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ error: 'No token provided.' });
   }

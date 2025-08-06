@@ -4,6 +4,7 @@ const path = require('path');
 // Simple keyword-based retrieval from kb.json
 function retrieveKBContext(userMessage) {
   const kbPath = path.join(__dirname, '../kb.json');
+  console.log(`[retrieveKBContext] userMessage: ${userMessage}`);
   let kb;
   try {
     kb = JSON.parse(fs.readFileSync(kbPath, 'utf8'));

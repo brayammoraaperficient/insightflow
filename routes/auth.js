@@ -9,6 +9,7 @@ router.get('/github', passport.authenticate('github', { scope: [ 'user:email' ] 
 router.get('/github/callback', 
   passport.authenticate('github', { failureRedirect: '/' }),
   (req, res) => {
+    console.log(`[GitHub OAuth] user:`, req.user);
     res.redirect('/'); // Redirect after successful login
   }
 );

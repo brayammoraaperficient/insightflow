@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { authMiddleware } = require('../controllers/auth');
+const { ensureAuthenticated } = require('../controllers/oauth');
 require('dotenv').config();
 const { AzureOpenAI } = require('openai');
 const { retrieveKBContext } = require('../controllers/kb');
@@ -12,8 +12,9 @@ const apiVersion = '2024-04-01-preview';
 const modelName = deployment;
 
 // POST /chat - Accepts user messages and returns AI-generated replies
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', ensureAuthenticated, async (req, res) => {
   const { message } = req.body;
+  console.log(`[chat] user:`, req.user, `message:`, message);
   if (!message) {
     return res.status(400).json({ error: 'Message is required.' });
   }

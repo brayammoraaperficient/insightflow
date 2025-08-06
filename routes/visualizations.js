@@ -3,7 +3,7 @@ const router = express.Router();
 
 // GET /visualizations/:dataset_id
 router.get('/:dataset_id', (req, res) => {
-  // TODO: Return visualization data
+  console.log(`[visualizations] dataset_id:`, req.params.dataset_id);
   res.json({ message: 'Visualization for dataset', dataset_id: req.params.dataset_id });
 });
 

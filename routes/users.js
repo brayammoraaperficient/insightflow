@@ -11,7 +11,7 @@ router.post('/login', auth.login);
 
 // PUT /users/:id/permissions
 router.put('/:id/permissions', (req, res) => {
-  // TODO: Update user permissions
+  console.log(`[users/permissions] user_id:`, req.params.id, `body:`, req.body);
   res.json({ message: 'Permissions updated', user_id: req.params.id });
 });
 

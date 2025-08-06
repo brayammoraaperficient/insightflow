@@ -3,7 +3,7 @@ const router = express.Router();
 
 // GET /api/docs
 router.get('/docs', (req, res) => {
-  // TODO: Return API documentation
+  console.log(`[api/docs]`);
   res.json({ message: 'API documentation endpoint' });
 });
 
