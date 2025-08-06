@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Set dummy Azure OpenAI key
+        run: echo "AZURE_OPENAI_API_KEY=dummy" >> $GITHUB_ENV
+
       - name: Run tests
         run: npm test
 
