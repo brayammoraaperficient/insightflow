@@ -6,7 +6,7 @@ This is the initial scaffold for the InsightFlow Node.js/Express web-service.
 - Data upload (CSV, Excel, etc.)
 - Interactive visualizations
 - User permissions management 
-- Automated recommendations
+- Automated recommendations 
 - API documentation
 
 - Contextual chatbot with Retrieval-Augmented Generation (RAG) 
