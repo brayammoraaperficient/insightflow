@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: insightflow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: insightflow
+  template:
+    metadata:
+      labels:
+        app: insightflow
+    spec:
+      containers:
+        - name: insightflow
+          image: myregistry.azurecr.io/insightflow:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: AZURE_OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-secrets
+                  key: api-key
+            - name: AZURE_OPENAI_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: openai-secrets
+                  key: endpoint
+            - name: KB_PATH
+              value: /app/kb.json
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: insightflow-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: insightflow
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
