@@ -1,13 +1,20 @@
+
+// Mock openai package to prevent real network calls
+jest.mock('openai', () => ({
+  AzureOpenAI: jest.fn().mockImplementation(() => ({
+    chat: {
+      completions: {
+        create: jest.fn().mockResolvedValue({
+          choices: [{ message: { content: 'Mocked response' } }]
+        })
+      }
+    }
+  }))
+}));
+
 const request = require('supertest');
 const express = require('express');
 const chatRouter = require('../routes/chat');
-
-// Mock LLM response
-jest.mock('@azure/openai', () => ({
-  OpenAIClient: jest.fn().mockImplementation(() => ({
-    getCompletions: jest.fn().mockResolvedValue({ choices: [{ text: 'Mocked response' }] })
-  }))
-}));
 
 const app = express();
 app.use(express.json());
