@@ -1,11 +1,19 @@
+
 const express = require('express');
+const session = require('express-session');
+const { passport } = require('./controllers/oauth');
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(session({ secret: 'your_secret', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// OAuth routes
+app.use('/auth', require('./routes/auth'));
 
 // Routes
-
 app.use('/data', require('./routes/data'));
 app.use('/visualizations', require('./routes/visualizations'));
 app.use('/users', require('./routes/users'));
