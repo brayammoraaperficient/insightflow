@@ -24,6 +24,9 @@ jobs:
       - name: Set dummy Azure OpenAI key
         run: echo "AZURE_OPENAI_API_KEY=dummy" >> $GITHUB_ENV
 
+      - name: Set dummy Azure OpenAI endpoint
+        run: echo "AZURE_OPENAI_ENDPOINT=https://dummy-endpoint" >> $GITHUB_ENV
+
       - name: Run tests
         run: npm test
 
