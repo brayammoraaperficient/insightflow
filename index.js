@@ -5,11 +5,13 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 // Routes
+
 app.use('/data', require('./routes/data'));
 app.use('/visualizations', require('./routes/visualizations'));
 app.use('/users', require('./routes/users'));
 app.use('/recommendations', require('./routes/recommendations'));
 app.use('/api', require('./routes/api'));
+app.use('/chat', require('./routes/chat'));
 
 app.get('/', (req, res) => {
   res.send('InsightFlow Service Running');
