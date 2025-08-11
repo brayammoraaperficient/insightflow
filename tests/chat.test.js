@@ -14,6 +14,14 @@ jest.mock('openai', () => ({
 
 const request = require('supertest');
 const express = require('express');
+
+// Mock ensureAuthenticated to always pass for tests
+jest.mock('../controllers/oauth', () => ({
+  ensureAuthenticated: (req, res, next) => {
+    req.user = { username: 'testuser' };
+    next();
+  }
+}));
 const chatRouter = require('../routes/chat');
 
 const app = express();
